@@ -1,0 +1,49 @@
+/* Cinzel*/
+@font-face {
+  font-family: 'Cinzel';
+  src: url('../../assets/fonts/Geral/Cinzel-Regular.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Cinzel';
+  src: url('../../assets/fonts/Geral/Cinzel-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Cinzel';
+  src: url('../../assets/fonts/Geral/Cinzel-ExtraBold.otf') format('opentype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Manrope */
+@font-face {
+  font-family: 'Manrope';
+  src: url('../../assets/fonts/Geral/Manrope-regular.otf') format('opentype');
+  /* minúsculo */
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Manrope';
+  src: url('../../assets/fonts/Geral/Manrope-semibold.otf') format('opentype');
+  /* minúsculo */
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Manrope';
+  src: url('../../assets/fonts/Geral/Manrope-bold.otf') format('opentype');
+  /* minúsculo */
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}

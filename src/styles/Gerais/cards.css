@@ -1,0 +1,109 @@
+/* Cartão padrão com fundo elevado, borda sutil e sombra */
+.card {
+    background: var(--bg-elevated);
+    border-radius: var(--radius);
+    padding: 30px;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    border: 1px solid var(--border-color);
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Variação sem fundo e sem borda (SF = sem fundo) */
+.SF {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+}
+
+.card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-4px);
+    border-color: var(--brand-ambar);
+}
+
+/* Cartão com padding maior */
+.card-lg {
+    padding: 45px 35px;
+}
+
+/* Grid com 2 colunas */
+.grid-2x2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* Grid com 3 colunas */
+.grid-3x3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    align-items: stretch;
+}
+
+/* Borda direita âmbar para cards dentro de grid */
+.grid-border-right {
+    border-right: 3px solid var(--brand-ambar);
+}
+
+.grid-3x3 .card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+/* Grid com 4 colunas */
+.grid-4x4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+/* Grid automático com colunas flexíveis */
+.grid-auto {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Título interno de cartão */
+.card-title {
+    border-left: none;
+    padding-left: 0;
+    color: var(--brand-creme);
+    font-size: 1.5rem;
+}
+
+@media (max-width: 768px) {
+
+    .grid-3x3,
+    .grid-4x4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid-4x4>div:nth-child(2) {
+        border-right: none;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .grid-3x3,
+    .grid-4x4 {
+        grid-template-columns: 1fr;
+    }
+
+    .grid-4x4>div {
+        border-right: none;
+    }
+}

@@ -1,0 +1,26 @@
+/* Largura da barra */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Fundo do trilho */
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary, #1e1e1e);
+}
+
+/* Alça */
+::-webkit-scrollbar-thumb {
+    background: var(--brand-ambar, #f0a500);
+    border-radius: 6px;
+}
+
+/* Hover na alça */
+::-webkit-scrollbar-thumb:hover {
+    background: #ffb833;
+}
+
+/* Firefox (suporte parcial) */
+html {
+    scrollbar-color: var(--brand-ambar) var(--bg-secondary);
+    scrollbar-width: thin;
+}

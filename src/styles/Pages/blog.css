@@ -1,0 +1,23 @@
+/* Destaque principal */
+.card-blog-destaque {
+    border-left: 4px solid var(--brand-ambar);
+    padding: 30px;
+    /* um pouco mais espaçoso que o card padrão */
+}
+
+/* Título do artigo em destaque */
+.blog-titulo-destaque {
+    font-size: 1.8rem;
+    color: var(--text-header);
+    margin-bottom: 12px;
+}
+
+.card-blog {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-blog .card-titulo {
+    font-size: 1.3rem;
+}

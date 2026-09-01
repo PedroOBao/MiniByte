@@ -1,0 +1,190 @@
+@media (max-width: 768px) {
+
+    /* ---------- HERO ---------- */
+    .sobre-page .title-desktop,
+    .sobre-page .subtitle-desktop {
+        display: none !important;
+    }
+
+    .sobre-page .title-mobile,
+    .sobre-page .subtitle-mobile {
+        display: block !important;
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* ---------- HISTÓRICO DA EMPRESA ---------- */
+    .sobre-page .sobre-conteudo-flex {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .sobre-page .sobre-imagem-bloco {
+        display: none;
+        /* remove a imagem */
+    }
+
+    .sobre-page .sobre-texto-bloco h2 {
+        font-size: 2rem;
+    }
+
+    .sobre-page .sobre-texto-bloco p {
+        font-size: 1rem;
+    }
+}
+
+/* ---------- PROPÓSITO (Missão / Visão / Valores) ---------- */
+@media (max-width: 768px) {
+
+    /* ---------- HERO ---------- */
+    .sobre-page .title-desktop,
+    .sobre-page .subtitle-desktop {
+        display: none !important;
+    }
+
+    .sobre-page .title-mobile,
+    .sobre-page .subtitle-mobile {
+        display: block !important;
+    }
+
+    /* ---------- HISTÓRICO DA EMPRESA ---------- */
+    .sobre-page .sobre-conteudo-flex {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .sobre-page .sobre-imagem-bloco {
+        display: none;
+    }
+
+    .sobre-page .sobre-texto-bloco h2 {
+        font-size: 2rem;
+    }
+
+    .sobre-page .sobre-texto-bloco p {
+        font-size: 1rem;
+    }
+
+    /* ---------- PROPÓSITO (Missão / Visão / Valores) ---------- */
+    .sobre-page .grid-3x3 .card.card-lg,
+    .sobre-page .grid-3x3 .card.card-valores {
+        display: grid !important;
+        grid-template-columns: 50px 1fr !important;
+        grid-template-rows: auto auto !important;
+        grid-template-areas:
+            "icon title"
+            "text text" !important;
+        align-items: center !important;
+        /* centraliza ícone e título verticalmente */
+        justify-content: start !important;
+        column-gap: 1rem;
+        text-align: left;
+        padding: 25px 20px;
+    }
+
+    /* Ícone */
+    .sobre-page .grid-3x3 .card .icon-card {
+        grid-area: icon;
+        margin-bottom: 0;
+        width: 50px;
+        height: 50px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .sobre-page .grid-3x3 .card .icon-card img {
+        width: 28px;
+        height: 28px;
+    }
+
+    /* Título */
+    .sobre-page .grid-3x3 .card .card-titulo {
+        grid-area: title;
+        text-align: left;
+        justify-content: flex-start;
+        border-left: none;
+        padding-left: 0;
+        margin: 0;
+        font-size: 1.3rem;
+        display: flex;
+        align-items: center;
+        /* alinha verticalmente com o ícone */
+    }
+
+    /* Parágrafos e lista de valores */
+    .sobre-page .grid-3x3 .card.card-lg p,
+    .sobre-page .grid-3x3 .card.card-valores .lista-valores {
+        grid-area: text;
+        margin: 1rem 0 0 0 !important;
+        text-align: left;
+        max-width: 100% !important;
+    }
+
+    .sobre-page .card-valores .lista-valores p {
+        text-align: left;
+        margin: 0;
+    }
+
+    /* ---------- POR QUE NOS ESCOLHER? ---------- */
+    .sobre-page .grid-3x3 {
+        grid-template-columns: 1fr;
+    }
+
+    .sobre-page .grid-3x3 .card {
+        text-align: left;
+        min-height: auto;
+        padding: 10px;
+    }
+
+    .sobre-page .grid-3x3 .card .card-titulo {
+        text-align: left;
+        justify-content: flex-start;
+        border-left: none;
+        padding-left: 0;
+    }
+
+    .sobre-page .grid-3x3 .card p {
+        text-align: left;
+    }
+
+    .sobre-page .grid-border-right {
+        border-right: none;
+    }
+
+}
+
+
+/* ---------- POR QUE NOS ESCOLHER? ---------- */
+@media (max-width: 768px) {
+
+    .sobre-page .grid-3x3 {
+        grid-template-columns: 1fr;
+        /* uma coluna */
+    }
+
+    .sobre-page .grid-3x3 .card {
+        text-align: left;
+        min-height: auto;
+        padding: 10px;
+    }
+
+    .sobre-page .grid-3x3 .card .card-titulo {
+        text-align: left;
+        justify-content: flex-start;
+        border-left: none;
+        padding-left: 0;
+    }
+
+    .sobre-page .grid-3x3 .card p {
+        text-align: left;
+    }
+
+    /* Remove a borda direita dos cards */
+    .sobre-page .grid-border-right {
+        border-right: none;
+    }
+
+}

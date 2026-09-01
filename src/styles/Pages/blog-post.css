@@ -1,0 +1,37 @@
+.artigo-imagem {
+    width: 80%;
+    height: auto;
+    display: block;
+    margin: 105px auto 0;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.artigo-titulo {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.artigo-conteudo p {
+    text-indent: 2em;
+    /* "tab" */
+    margin-bottom: 1.5em;
+    line-height: 1.7;
+    text-align: justify;
+}
+
+.artigo-conteudo {
+    column-count: 2;
+    column-gap: 2.5rem;
+    column-rule: 1px solid var(--brand-ambar);
+}
+
+@media (max-width: 768px) {
+    .artigo-conteudo {
+        column-count: 1;
+        column-rule: none;
+    }
+}

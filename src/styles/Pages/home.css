@@ -1,0 +1,140 @@
+/* Wordmark principal da home */
+.home-wordmark {
+    width: 80%;
+    height: auto;
+    display: block;
+    margin: 105px auto 0;
+    margin-left: 80px;
+}
+
+/* Seção 1: Quem somos */
+.home-secao1 .home-lado {
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.home-secao1 .home-lado .btn {
+    margin-top: auto;
+}
+
+.home-secao1 .home-esquerda {
+    flex: 3;
+    text-align: left;
+}
+
+.home-secao1 .home-direita {
+    flex: 1;
+    text-align: left;
+}
+
+/* Ícone slogan (desktop) */
+.home-icone-slogan {
+    width: auto;
+    height: 450px;
+    margin-top: 40px;
+    align-self: center;
+}
+
+/* Esconde versão mobile no desktop */
+.home-icone-slogan-mobile {
+    display: none;
+}
+
+/* Caixa de ícone base */
+.icon-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Ícone de serviço */
+.icon-box--service {
+    width: 50px;
+    height: 50px;
+    border-radius: 20px;
+    background-color: rgba(255, 221, 126, 0.065);
+    margin-bottom: 12px;
+}
+
+.icon-box--service img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    filter: var(--brand-ambar-filter);
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+/* Ícone de empresa (portfólio) – mantido como exemplo */
+.icon-box--company {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 16px;
+}
+
+.icon-box--company img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+/* Efeito hover nos ícones */
+.card:hover .icon-box--service {
+    transform: scale(1.05) rotate(5deg);
+}
+
+.card:hover .icon-box--company {
+    transform: scale(1.05);
+}
+
+/* Seção de CTA final */
+.home-cta {
+    max-width: 1000px;
+    margin: 0 auto 30px;
+    padding: 0 20px;
+}
+
+.home-cta .card-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 25px 15px;
+}
+
+.home-cta-icon {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    filter: var(--brand-ambar-filter);
+}
+
+.home-cta-icon img {
+    width: auto;
+    height: 70px;
+}
+
+.home-cta-titulo {
+    font-size: 2.1rem;
+    color: var(--text-header);
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.home-cta-texto {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+/* Alinhamento de cards na seção 2 */
+.home-secao2 .grid-4x4 .card h3,
+.home-secao2 .grid-4x4 .card p {
+    text-align: left;
+}

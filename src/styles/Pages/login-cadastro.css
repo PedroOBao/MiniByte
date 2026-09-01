@@ -1,0 +1,48 @@
+/* posiciona o ícone dentro do input */
+.input-password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.input-password-wrapper input {
+    width: 100%;
+    padding-right: 40px;
+    box-sizing: border-box;
+}
+
+.input-password-toggle {
+    position: absolute;
+    right: 10px;
+    top: 0;
+    bottom: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+/* Ícone do olho */
+.input-password-icon {
+    width: 20px;
+    height: 20px;
+    filter: var(--brand-ambar-filter);
+    pointer-events: none;
+}
+
+.input-capslock-icon {
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    filter: var(--brand-ambar-filter);
+    pointer-events: none;
+    z-index: 2;
+}

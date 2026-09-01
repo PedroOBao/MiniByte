@@ -1,0 +1,61 @@
+/* ========== CONTAINER E ALINHAMENTO ========== */
+.page-hero-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ========== HERO ========== */
+.page-hero {
+    position: relative;
+    padding: 20px 0;
+    overflow: hidden;
+    clip-path: inset(0);
+}
+
+.page-hero::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    left: -10%;
+    width: 130%;
+    height: 180%;
+    pointer-events: none;
+    transform: rotate(-10deg);
+}
+
+.page-hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+/* ========== TÍTULO DA PÁGINA ========== */
+.page-title {
+    color: var(--brand-ambar);
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+}
+
+/* ========== SUBTÍTULO ========== */
+.page-subtitle {
+    font-size: 1.1rem;
+    color: var(--brand-creme);
+    opacity: 0.8;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 35px;
+}
+
+/* ========== SLOGAN ========== */
+.slogan-box {
+    display: inline-block;
+    border-top: 1px solid rgba(247, 230, 196, 0.2);
+    border-bottom: 1px solid rgba(247, 230, 196, 0.2);
+    padding: 12px 30px;
+}
+
+.slogan {
+    font-size: 1.5rem;
+    color: var(--brand-ambar);
+    letter-spacing: 1px;
+}

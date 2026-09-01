@@ -1,0 +1,50 @@
+/* Centraliza texto */
+.text-center {
+    text-align: center;
+}
+
+/* Margem superior 10px */
+.mt-10 {
+    margin-top: 10px;
+}
+
+/* Margem superior 20px */
+.mt-20 {
+    margin-top: 20px;
+}
+
+/* Margem inferior 10px */
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+/* Margem inferior 20px */
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+/* Padding uniforme de 20px */
+.p-20 {
+    padding: 20px;
+}
+
+/* Largura total */
+.w-100 {
+    width: 100%;
+}
+
+/* Cor âmbar da marca */
+.text-brand-ambar {
+    color: var(--brand-ambar);
+}
+
+/* Tag de categoria (usada em seções) */
+.tag {
+    display: inline-block;
+    color: var(--brand-ambar);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    margin-bottom: 0;
+}

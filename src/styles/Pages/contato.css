@@ -1,0 +1,50 @@
+/* Títulos dentro dos cards */
+.card-titulo-contato {
+    font-size: 1.5rem;
+    color: var(--text-header);
+    margin-bottom: 24px;
+    padding-left: 16px;
+    border-left: 4px solid var(--brand-ambar);
+    font-family: 'Cinzel', serif;
+    text-transform: uppercase;
+    line-height: 1.3;
+}
+
+/* Formulário – pequeno ajuste de espaçamento */
+.contato-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    /* espaçamento entre os campos */
+}
+
+/* Remover margens extras padrão dos form-group dentro desse contexto */
+.contato-form .form-group {
+    margin-bottom: 0;
+    margin-top: 0;
+}
+
+/* Lista de informações de contato */
+.contato-info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contato-info-item {
+    background-color: var(--bg-elevated);
+    border-left: 4px solid var(--brand-ambar);
+    padding: 14px 18px;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Labels dentro dos itens de info (já são .cargo, então herdam estilo) */
+
+/* Valor do texto da informação */
+.contato-info-valor {
+    font-size: 1.05rem;
+    color: var(--text-header);
+    margin: 4px 0 0 0;
+    font-weight: 500;
+}

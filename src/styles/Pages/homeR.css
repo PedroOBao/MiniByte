@@ -1,0 +1,110 @@
+/* WordMark */
+@media (max-width: 768px) {
+    .home-page .home-wordmark {
+        width: 100%;
+        margin: 60px auto 0;
+        display: block;
+        margin-left: -45px;
+        margin-bottom: -80px;
+    }
+}
+
+/*Seção 1*/
+@media (max-width: 768px) {
+    .home-page .home-secao1.section--flex {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .home-page .home-secao1 .home-lado {
+        width: 100%;
+        padding: 10px 0;
+    }
+
+    .home-page .home-icone-slogan-desktop {
+        display: none;
+    }
+
+    .home-page .home-icone-slogan-mobile {
+        display: block;
+        width: 100%;
+        max-width: 2000px;
+        height: auto;
+        margin-top: -80px;
+        margin-bottom: -170px
+    }
+}
+
+/*Seção 3*/
+@media (max-width: 768px) {
+
+    .home-page .title-desktop {
+        display: none !important;
+    }
+
+    .home-page .title-mobile {
+        display: block !important;
+    }
+
+    .home-page .home-secao3 .grid-3x3 {
+        display: flex;
+        flex-direction: column;
+        gap: 24px; 
+    }
+
+    .home-page .card-divided .card {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        text-align: left;
+        padding: 20px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        margin: 0;
+        gap: 16px;
+        height: auto !important;
+        min-height: unset !important;
+    }
+
+    /* Container de texto */
+    .home-page .card-info {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        align-items: center;
+    }
+
+    .home-page .grid-border-right {
+        border-right: none !important;
+    }
+
+    /* Ícone da empresa */
+    .home-page .card-divided .icon-box--company {
+        flex-shrink: 0;
+        width: 48px;
+        height: 48px;
+    }
+
+    /* Título e texto */
+    .home-page .card-divided .card-title,
+    .card-info p {
+        text-align: left;
+        margin: 0;
+    }
+
+    /* Botão */
+    .home-page .card-divided .btn {
+        margin-top: 6px;
+        margin-bottom: 0;
+        padding: 6px 14px;
+        font-size: 0.8rem;
+        border-radius: 20px;
+        white-space: normal;
+        line-height: 1.3;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: fit-content;
+        max-width: 200px;
+    }
+}
