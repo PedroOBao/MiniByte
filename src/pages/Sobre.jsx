@@ -41,7 +41,7 @@ function Sobre() {
           </div>
           <div className="sobre-imagem-bloco">
             <div className="moldura-logo-elo">
-              <img src="web3.png" alt="Arte conceitual" className="sobre-img" />
+              <img src="Arte_Conceitual.png" alt="Arte conceitual" className="sobre-img" />
             </div>
           </div>
         </div>
