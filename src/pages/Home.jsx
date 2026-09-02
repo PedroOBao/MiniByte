@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import WordMark from '../assets/images/Especificos/WordMark.png';
 
-import iconSlogan from "../assets/images/Especificos/Icon_Slogan.png";
+import iconSlogan from "../assets/images/Especificos/Logo_Estendida.png";
 import iconSloganQuadrado from "../assets/images/Especificos/Icon_Slogan_Quadrado.png";
 
 import iconInstitucionais from "../assets/images/Icons/Home/Institucionais.png";

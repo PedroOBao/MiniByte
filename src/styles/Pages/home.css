@@ -1,10 +1,10 @@
 /* Wordmark principal da home */
 .home-wordmark {
-    width: 80%;
+    width: 70%;
     height: auto;
     display: block;
     margin: 105px auto 0;
-    margin-left: 80px;
+    margin-left: auto;
 }
 
 /* Seção 1: Quem somos */

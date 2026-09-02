@@ -27,8 +27,8 @@
 }
 
 .navbar-logo img {
-    margin-top: 9px;
-    height: 120px;
+    margin-top: 3px;
+    height: 70px;
     width: auto;
     transition: opacity 0.3s;
 }

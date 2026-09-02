@@ -1,6 +1,6 @@
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { useUser } from '../users/UserContext';
-import logo from '../../assets/images/Especificos/LogoCompleta.png';
+import logo from '../../assets/images/Especificos/Logo_MiniByte.png';
 import iconeSair from '../../assets/images/Icons/Nav_Footer/btn-sair.png';
 
 import iconHome from '../../assets/images/Icons/Nav_Footer/icon-home.png';

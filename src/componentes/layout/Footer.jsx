@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import logo from '../../assets/images/Especificos/LogoCompleta.png';
+import logo from '../../assets/images/Especificos/Logo_MiniByte.png';
 
 import iconContato from '../../assets/images/Icons/Nav_Footer/icon-contato.png';
 import iconEmail from '../../assets/images/Icons/Nav_Footer/icon-email.png';
