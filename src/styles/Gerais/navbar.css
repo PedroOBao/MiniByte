@@ -92,6 +92,57 @@
     gap: 15px;
 }
 
+/* Carrinho da loja */
+.navbar-cart {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-height: 40px;
+    padding: 7px 14px;
+    background: rgba(255, 106, 0, 0.08);
+    border: 1px solid rgba(255, 106, 0, 0.52);
+    border-radius: 999px;
+    color: var(--text-main);
+    cursor: pointer;
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 700;
+    transition: background 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+}
+
+.navbar-cart:hover {
+    background: var(--brand-ambar);
+    border-color: var(--brand-ambar);
+    color: var(--bg-main);
+    transform: translateY(-1px);
+}
+
+.navbar-cart-icon {
+    width: 24px;
+    height: 20px;
+    object-fit: contain;
+}
+
+.navbar-cart-count {
+    display: grid;
+    place-items: center;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 4px;
+    border-radius: 50px;
+    background: var(--brand-ambar);
+    color: var(--bg-main);
+    font-size: 0.68rem;
+    line-height: 1;
+}
+
+.navbar-cart:hover .navbar-cart-count {
+    background: var(--bg-main);
+    color: var(--brand-ambar);
+}
+
 .user-nome {
     color: var(--text-main);
     font-size: 14px;
@@ -143,6 +194,16 @@
 }
 
 @media (max-width: 768px) {
+    .navbar {
+        height: 70px;
+        padding: 0 8px;
+        gap: 4px;
+    }
+
+    .navbar-logo img {
+        height: 45px;
+    }
+
     .navbar-links a {
         padding: 8px 12px;
         border-radius: 8px;
@@ -173,7 +234,21 @@
     }
 
     .navbar-links {
-        gap: 8px;
+        gap: 3px;
+    }
+
+    .navbar-cart {
+        min-width: 40px;
+        padding: 7px 8px;
+    }
+
+    .navbar-cart-label {
+        display: none;
+    }
+
+    .navbar-cart-icon {
+        width: 23px;
+        height: 19px;
     }
 
     /* Parte do Usuario*/
@@ -189,5 +264,43 @@
         line-height: 1.2;
         word-wrap: break-word;
         white-space: normal;
+    }
+
+    .btn-sair {
+        padding: 7px 12px;
+    }
+}
+
+@media (max-width: 430px) {
+    .navbar-logo img {
+        height: 39px;
+    }
+
+    .navbar-links a {
+        padding: 6px 5px;
+    }
+
+    .navbar-icon {
+        width: 21px;
+        height: 21px;
+    }
+
+    .navbar-cart {
+        min-width: 34px;
+        padding: 6px;
+    }
+
+    .navbar-cart-icon {
+        width: 21px;
+        height: 17px;
+    }
+
+    .navbar-user .btn-sair {
+        padding: 6px 9px;
+        font-size: 0.75rem;
+    }
+
+    .user-nome {
+        display: none;
     }
 }

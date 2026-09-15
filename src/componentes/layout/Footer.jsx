@@ -14,7 +14,7 @@ const Footer = () => {
                 <div className="footer-col">
                     <img src={logo} alt="Logo" className="footer-logo" />
                     <p className="footer-description">
-                        Combinamos estratégia, estética e propósito para criar marcas memoráveis e soluções digitais.
+                        Hardware, jogos e tecnologia para montar, melhorar e aproveitar o seu setup.
                     </p>
                 </div>
 
@@ -23,7 +23,7 @@ const Footer = () => {
                     <ul className="footer-links">
                         <li><NavLink to="/" className="btn-link">Home</NavLink></li>
                         <li><NavLink to="/sobre" className="btn-link">Sobre</NavLink></li>
-                        <li><NavLink to="/blog" className="btn-link">Blog</NavLink></li>
+                        <li><NavLink to="/jogos" className="btn-link">Jogos</NavLink></li>
                         <li><NavLink to="/contato" className="btn-link">Contato</NavLink></li>
                     </ul>
                 </div>
@@ -58,7 +58,7 @@ const Footer = () => {
                 </div>
             </div>
             <div className="footer-bottom">
-                &copy; {new Date().getFullYear()} Studio Modelo. Todos os direitos reservados.
+                &copy; {new Date().getFullYear()} MiniByte. Todos os direitos reservados.
             </div>
         </footer>
     );

@@ -1,24 +1,24 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState } from 'react';
 
 const UserContext = createContext();
 
-export function UserProvider({ children }) {
-    const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true);
+function carregarUsuarioDaSessao() {
+    const saved = localStorage.getItem('currentUser');
 
-    // Recupera usuário logado da sessão anterior
-    useEffect(() => {
-        const saved = localStorage.getItem('currentUser');
-        if (saved) {
-            try {
-                setUser(JSON.parse(saved));
-            } catch {
-                localStorage.removeItem('currentUser');
-                localStorage.removeItem('isAdmin');
-            }
-        }
-        setLoading(false);
-    }, []);
+    if (!saved) return null;
+
+    try {
+        return JSON.parse(saved);
+    } catch {
+        localStorage.removeItem('currentUser');
+        localStorage.removeItem('isAdmin');
+        return null;
+    }
+}
+
+export function UserProvider({ children }) {
+    const [user, setUser] = useState(carregarUsuarioDaSessao);
+    const loading = false;
 
     // Registra novo usuário (nível 'visualizador')
     const register = (nome, email, senha) => {
@@ -88,4 +88,5 @@ export function UserProvider({ children }) {
     );
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useUser = () => useContext(UserContext);

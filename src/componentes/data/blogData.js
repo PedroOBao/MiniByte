@@ -1,6 +1,6 @@
-import Blog1 from "../../assets/images/blog/blog1.png";
-import Blog2 from "../../assets/images/blog/blog2.png";
-import Blog3 from "../../assets/images/blog/blog3.jpg";
+import Blog1 from "../../assets/images/Blog/blog1.png";
+import Blog2 from "../../assets/images/Blog/blog2.png";
+import Blog3 from "../../assets/images/Blog/blog3.jpg";
 
 export const artigos = [
     {

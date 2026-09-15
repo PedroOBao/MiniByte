@@ -6,7 +6,7 @@ import iconSlogan from "../assets/images/Especificos/Logo_Estendida.png";
 
 import iconKits from "../assets/images/Icons/Home/Kits.png";
 import iconPerifericos from "../assets/images/Icons/Home/Perifericos.png";
-import iconHardware from "../assets/images/Icons/Home/Hardware.png";
+import iconHardware from "../assets/images/Icons/Home/hardware.png";
 import iconJogos from "../assets/images/Icons/Home/Jogos.png";
 
 import iconContato from "../assets/images/Icons/Home/icon-contato2.png";

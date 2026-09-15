@@ -1,16 +1,19 @@
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { useUser } from '../users/UserContext';
+import { useCart } from '../cart/useCart';
 import logo from '../../assets/images/Especificos/Logo_MiniByte.png';
 import iconeSair from '../../assets/images/Icons/Nav_Footer/btn-sair.png';
+import iconeCarrinho from '../../assets/images/Especificos/Icon_Carrinho.png';
 
 import iconHome from '../../assets/images/Icons/Nav_Footer/icon-home.png';
 import iconSobre from '../../assets/images/Icons/Nav_Footer/icon-sobre.png';
-import iconBlog from '../../assets/images/Icons/Nav_Footer/icon-blog.png';
+import iconJogos from '../../assets/images/Icons/Home/Jogos.png';
 import iconContato from '../../assets/images/Icons/Nav_Footer/icon-contato.png';
 import iconAdmin from '../../assets/images/Icons/Nav_Footer/icon-admin.png';
 
 function Navbar() {
     const { user, logout } = useUser();
+    const { totalItems, openCart } = useCart();
     const navigate = useNavigate();
     const isAdmin = localStorage.getItem('isAdmin') === 'true';
 
@@ -40,9 +43,9 @@ function Navbar() {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to="/blog" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
-                            <img src={iconBlog} alt="" className="navbar-icon" />
-                            <span>Blog</span>
+                        <NavLink to="/jogos" className={({ isActive }) => (isActive ? 'nav-link active' : 'nav-link')}>
+                            <img src={iconJogos} alt="" className="navbar-icon" />
+                            <span>Jogos</span>
                         </NavLink>
                     </li>
                     <li>
@@ -61,6 +64,17 @@ function Navbar() {
                     )}
                 </ul>
             </nav>
+
+            <button
+                type="button"
+                className="navbar-cart"
+                onClick={openCart}
+                aria-label={`Abrir carrinho, ${totalItems} item(ns)`}
+            >
+                <img src={iconeCarrinho} alt="" className="navbar-cart-icon" />
+                <span className="navbar-cart-label">Carrinho</span>
+                {totalItems > 0 && <span className="navbar-cart-count">{totalItems}</span>}
+            </button>
 
             <div className="navbar-user">
                 {user ? (
