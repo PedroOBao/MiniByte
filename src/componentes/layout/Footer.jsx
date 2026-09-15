@@ -14,7 +14,7 @@ const Footer = () => {
                 <div className="footer-col">
                     <img src={logo} alt="Logo" className="footer-logo" />
                     <p className="footer-description">
-                        Hardware, jogos e tecnologia para montar, melhorar e aproveitar o seu setup.
+                        A maior loja de informática do Brasil.
                     </p>
                 </div>
 
@@ -40,11 +40,11 @@ const Footer = () => {
                     <ul className="footer-contact-list">
                         <li className="footer-contact-item">
                             <img src={iconLocalizacao} alt="" className="footer-icon" />
-                            <span>Sua Cidade - UF</span>
+                            <span>Santa Rosa - RS</span>
                         </li>
                         <li className="footer-contact-item">
                             <img src={iconEmail} alt="" className="footer-icon" />
-                            <a href="mailto:contato@seudominio.com.br">contato@seudominio.com.br</a>
+                            <a href="mailto:contato@seudominio.com.br">contato@minibyte.com.br</a>
                         </li>
                         <li className="footer-contact-item">
                             <img src={iconContato} alt="" className="footer-icon" />
