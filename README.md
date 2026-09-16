@@ -135,3 +135,11 @@ Projeto desenvolvido por alunos do grupo MiniByte, com foco em criar uma loja de
 ---
 
 MiniByte — tecnologia, games e produtos digitais em um só lugar.
+
+## Log de progresso
+
+15/09/2026 
+
+- Finalizada a página Home (Isaque);
+- Criada a sessão de Jogos (Nicolas);
+- Alteradas algumas informações do Footer (Pedro).
