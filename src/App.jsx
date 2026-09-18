@@ -12,6 +12,7 @@ import NotFound from "./pages/NotFound";
 
 // Páginas
 import Admin from "./admin/Admin";
+import Checkout from "./pages/Checkout";
 import Contato from "./pages/Contato";
 import Home from "./pages/Home";
 import JogoDetalhe from "./pages/JogoDetalhe";
@@ -33,6 +34,7 @@ function App() {
             <Route path="/sobre" element={<Sobre />} />
             <Route path="/jogos" element={<Jogos />} />
             <Route path="/produtos" element={<Produtos />} />
+            <Route path="/checkout" element={<Checkout />} />
             <Route path="/jogos/:slug" element={<JogoDetalhe />} />
             <Route path="/blog" element={<Navigate to="/jogos" replace />} />
             <Route
