@@ -1,24 +1,25 @@
-import { Navigate, Routes, Route } from 'react-router-dom';
-import { UserProvider } from './componentes/users/UserContext';
-import { CartProvider } from './componentes/cart/CartProvider';
-import AdminRoute from './admin/AdminRoute';
+import { Navigate, Route, Routes } from "react-router-dom";
+import AdminRoute from "./admin/AdminRoute";
+import { CartProvider } from "./componentes/cart/CartProvider";
+import { UserProvider } from "./componentes/users/UserContext";
 
 // Layout
-import ScrollToTop from './componentes/layout/ScrollToTop';
-import Navbar from './componentes/layout/Navbar';
-import Footer from './componentes/layout/Footer';
-import CartPanel from './componentes/cart/CartPanel';
-import NotFound from './pages/NotFound';
+import CartPanel from "./componentes/cart/CartPanel";
+import Footer from "./componentes/layout/Footer";
+import Navbar from "./componentes/layout/Navbar";
+import ScrollToTop from "./componentes/layout/ScrollToTop";
+import NotFound from "./pages/NotFound";
 
 // Páginas
-import Home from './pages/Home';
-import Sobre from './pages/Sobre';
-import Jogos from './pages/Jogos';
-import JogoDetalhe from './pages/JogoDetalhe';
-import Contato from './pages/Contato';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import Admin from './admin/Admin';
+import Admin from "./admin/Admin";
+import Contato from "./pages/Contato";
+import Home from "./pages/Home";
+import JogoDetalhe from "./pages/JogoDetalhe";
+import Jogos from "./pages/Jogos";
+import Login from "./pages/Login";
+import Produtos from "./pages/produtos";
+import Register from "./pages/Register";
+import Sobre from "./pages/Sobre";
 
 function App() {
   return (
@@ -31,9 +32,13 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/sobre" element={<Sobre />} />
             <Route path="/jogos" element={<Jogos />} />
+            <Route path="/produtos" element={<Produtos />} />
             <Route path="/jogos/:slug" element={<JogoDetalhe />} />
             <Route path="/blog" element={<Navigate to="/jogos" replace />} />
-            <Route path="/blog/:id" element={<Navigate to="/jogos" replace />} />
+            <Route
+              path="/blog/:id"
+              element={<Navigate to="/jogos" replace />}
+            />
             <Route path="/contato" element={<Contato />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
