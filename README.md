@@ -143,3 +143,8 @@ MiniByte — tecnologia, games e produtos digitais em um só lugar.
 - Finalizada a página Home (Isaque);
 - Criada a sessão de Jogos (Nicolas);
 - Alteradas algumas informações do Footer (Pedro).
+
+18/09/2026
+
+- Início do Perfil (Guilherme Vitor)
+
