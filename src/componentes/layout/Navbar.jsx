@@ -1,7 +1,6 @@
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import iconeCarrinho from "../../assets/images/Especificos/Icon_Carrinho.png";
 import logo from "../../assets/images/Especificos/Logo_MiniByte.png";
-import iconeSair from "../../assets/images/Icons/Nav_Footer/btn-sair.png";
 import { useCart } from "../cart/useCart";
 import { useUser } from "../users/UserContext";
 
@@ -13,15 +12,16 @@ import iconHome from "../../assets/images/Icons/Nav_Footer/icon-home.png";
 import iconSobre from "../../assets/images/Icons/Nav_Footer/icon-sobre.png";
 
 function Navbar() {
-  const { user, logout } = useUser();
+  const { user } = useUser();
   const { totalItems, openCart } = useCart();
-  const navigate = useNavigate();
   const isAdmin = localStorage.getItem("isAdmin") === "true";
-
-  const handleLogout = () => {
-    logout();
-    navigate("/");
-  };
+  const userInitials = user?.nome
+    ?.trim()
+    .split(" ")
+    .slice(0, 2)
+    .map((part) => part[0])
+    .join("")
+    .toUpperCase();
 
   return (
     <header className="navbar">
@@ -117,13 +117,18 @@ function Navbar() {
 
       <div className="navbar-user">
         {user ? (
-          <>
-            <span className="user-nome">{user.nome}</span>
-            <button onClick={handleLogout} className="btn-sair">
-              <img src={iconeSair} alt="Sair" className="btn-sair-icone" />
-              Sair
-            </button>
-          </>
+          <NavLink
+            to="/perfil"
+            className={({ isActive }) => `navbar-profile${isActive ? " active" : ""}`}
+            aria-label="Abrir meu perfil"
+          >
+            <span className="navbar-profile-avatar">{userInitials || "M"}</span>
+            <span className="navbar-profile-copy">
+              <small>Minha conta</small>
+              <strong>{user.nome}</strong>
+            </span>
+            <span className="navbar-profile-arrow" aria-hidden="true">→</span>
+          </NavLink>
         ) : (
           <Link
             to="/login"

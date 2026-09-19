@@ -21,6 +21,7 @@ import Login from "./pages/Login";
 import Produtos from "./pages/produtos";
 import Register from "./pages/Register";
 import Sobre from "./pages/Sobre";
+import Perfil from "./pages/Perfil";
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function App() {
             />
             <Route path="/contato" element={<Contato />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/perfil" element={<Perfil />} />
             <Route path="/register" element={<Register />} />
             <Route
               path="/admin"
