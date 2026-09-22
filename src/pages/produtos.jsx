@@ -1,139 +1,10 @@
 import { useMemo, useState } from "react";
+import { useProductState } from "../admin/useProducts";
 import { useCart } from "../componentes/cart/useCart";
 
 // ==========================================
-// 1. DADOS MOCKADOS (Substitua pela sua API/BD)
+// 1. OPÇÕES DO CATÁLOGO LOCAL
 // ==========================================
-const hardwareData = [
-  {
-    slug: "rtx-4070",
-    name: "Placa de Vídeo RTX 4070",
-    shortDescription:
-      "Performance excepcional para jogos em 1440p e ray tracing.",
-    brands: ["NVIDIA", "ASUS", "MSI"],
-    categories: ["Placa de Vídeo", "Componentes"],
-    types: [
-      {
-        id: "novo",
-        label: "Nova",
-        price: 4500.0,
-        brand: "ASUS",
-        oldPrice: 4800.0,
-      },
-      {
-        id: "usado",
-        label: "Usada",
-        price: 3200.0,
-        brand: "MSI",
-        oldPrice: null,
-      },
-    ],
-  },
-  {
-    slug: "ryzen-7",
-    name: "Processador Ryzen 7 7800X3D",
-    shortDescription: "O melhor processador para gaming do mercado.",
-    brands: ["AMD"],
-    categories: ["Processador", "Componentes"],
-    types: [
-      {
-        id: "novo",
-        label: "Novo",
-        price: 2800.0,
-        brand: "AMD",
-        oldPrice: 3100.0,
-      },
-    ],
-  },
-  {
-    slug: "memoria-ram-32gb",
-    name: "Memória RAM DDR5 32GB",
-    shortDescription: "Kit 2x16GB 6000MHz CL30 para máxima performance.",
-    brands: ["Corsair", "Kingston", "G.Skill"],
-    categories: ["Memória RAM", "Componentes"],
-    types: [
-      {
-        id: "novo",
-        label: "Nova",
-        price: 850.0,
-        brand: "Corsair",
-        oldPrice: 950.0,
-      },
-    ],
-  },
-  {
-    slug: "ssd-nvme-1tb",
-    name: "SSD NVMe 1TB Gen4",
-    shortDescription:
-      "Leitura de até 7000MB/s para carregamentos instantâneos.",
-    brands: ["Samsung", "WD", "Crucial"],
-    categories: ["Armazenamento", "Componentes"],
-    types: [
-      {
-        id: "novo",
-        label: "Novo",
-        price: 450.0,
-        brand: "Samsung",
-        oldPrice: 520.0,
-      },
-    ],
-  },
-  {
-    slug: "placa-mae-b650",
-    name: "Placa-Mãe B650M",
-    shortDescription: "Suporte para Ryzen 7000 e DDR5, com PCIe 4.0.",
-    brands: ["ASUS", "Gigabyte", "MSI"],
-    categories: ["Placa-Mãe", "Componentes"],
-    types: [
-      {
-        id: "novo",
-        label: "Nova",
-        price: 1200.0,
-        brand: "Gigabyte",
-        oldPrice: null,
-      },
-    ],
-  },
-  {
-    slug: "fonte-850w",
-    name: "Fonte 850W 80 Plus Gold",
-    shortDescription:
-      "Modular, silenciosa e eficiente para setups de alto desempenho.",
-    brands: ["Corsair", "XPG", "Seasonic"],
-    categories: ["Fonte", "Componentes"],
-    types: [
-      {
-        id: "novo",
-        label: "Nova",
-        price: 750.0,
-        brand: "Corsair",
-        oldPrice: 820.0,
-      },
-    ],
-  },
-];
-
-const brandOptions = [
-  "Todas",
-  "NVIDIA",
-  "AMD",
-  "ASUS",
-  "MSI",
-  "Corsair",
-  "Kingston",
-  "Samsung",
-  "WD",
-  "Gigabyte",
-];
-const categoryOptions = [
-  "Todas",
-  "Placa de Vídeo",
-  "Processador",
-  "Memória RAM",
-  "Armazenamento",
-  "Placa-Mãe",
-  "Fonte",
-];
 const conditionOptions = [
   { id: "novo", label: "Novo" },
   { id: "usado", label: "Usado" },
@@ -156,6 +27,7 @@ const getLowestPrice = (product) => {
 const HardwareCover = ({ hardware, size }) => {
   // Simula a capa do produto com um gradiente e o nome
   const isFeatured = size === "featured";
+  if (hardware.image) return <img src={hardware.image} alt={hardware.name} style={{ width: '100%', height: isFeatured ? 220 : 160, objectFit: 'contain', borderRadius: 12 }} />;
   return (
     <div
       style={{
@@ -221,6 +93,7 @@ const HardwareCard = ({ hardware, onAddToCart }) => {
         <button
           className="btn"
           style={{ width: "100%", marginTop: "1rem" }}
+          disabled={hardware.stock === 0}
           onClick={() => onAddToCart(hardware, cheapestType)}
         >
           Adicionar ao carrinho
@@ -242,6 +115,10 @@ const defaultFilters = {
 };
 
 export default function HardwarePage() {
+  const { products: allProducts, error: catalogError } = useProductState();
+  const hardwareData = useMemo(() => allProducts.filter((product) => product.active !== false), [allProducts]);
+  const brandOptions = ['Todas', ...new Set(hardwareData.flatMap((product) => product.brands))];
+  const categoryOptions = ['Todas', ...new Set(hardwareData.flatMap((product) => product.categories))];
   const [filters, setFilters] = useState(defaultFilters);
   const [cartMessage, setCartMessage] = useState("");
   const { addItem, openCart } = useCart();
@@ -249,8 +126,8 @@ export default function HardwarePage() {
   // Simula o "Jogo da Semana" (Produto em Destaque)
   const featuredProduct = hardwareData[0];
   const featuredType =
-    featuredProduct.types.find((type) => type.id === "novo") ||
-    featuredProduct.types[0];
+    featuredProduct?.types.find((type) => type.id === "novo") ||
+    featuredProduct?.types[0];
 
   const filteredProducts = useMemo(() => {
     const search = filters.search.trim().toLocaleLowerCase("pt-BR");
@@ -289,13 +166,14 @@ export default function HardwarePage() {
         return firstProduct.name.localeCompare(secondProduct.name, "pt-BR");
       return 0;
     });
-  }, [filters]);
+  }, [filters, hardwareData]);
 
   const updateFilter = (field, value) => {
     setFilters((currentFilters) => ({ ...currentFilters, [field]: value }));
   };
 
   const handleAddToCart = (product, type) => {
+    if (!product || product.stock === 0) return;
     addItem({
       cartId: `hardware-${product.slug}-${type.id}`,
       type: "hardware",
@@ -653,6 +531,7 @@ export default function HardwarePage() {
 
       {/* NOTIFICAÇÃO DE CARRINHO */}
       {cartMessage && <div className="cart-toast">{cartMessage}</div>}
+      {catalogError && <p role="alert">{catalogError}</p>}
 
       <main className="games-page animacao-entrada">
         {/* HERO SECTION */}
@@ -671,7 +550,7 @@ export default function HardwarePage() {
               <span>Compatibilidade garantida</span>
             </div>
           </div>
-          <div className="games-hero-feature">
+          {featuredProduct && <div className="games-hero-feature">
             <div className="featured-cover-wrap">
               <HardwareCover hardware={featuredProduct} size="featured" />
             </div>
@@ -697,7 +576,7 @@ export default function HardwarePage() {
                 <button
                   type="button"
                   className="btn"
-                  onClick={addFeaturedProduct}
+                  disabled={featuredProduct.stock === 0} onClick={addFeaturedProduct}
                 >
                   Adicionar ao carrinho
                 </button>
@@ -710,7 +589,7 @@ export default function HardwarePage() {
                 </button>
               </div>
             </div>
-          </div>
+          </div>}
         </section>
 
         {/* CATALOG SECTION */}

@@ -9,6 +9,7 @@ function GameCard({ game }) {
     const lowestPrice = getLowestPrice(game);
 
     const addDefaultGame = () => {
+        if (game.stock === 0) return;
         addItem({
             cartId: `game-${game.slug}-${defaultFormat.id}`,
             type: 'game',
@@ -28,7 +29,7 @@ function GameCard({ game }) {
             <div className="game-card-body">
                 <div className="game-card-topline">
                     <span className="game-status">{game.release}</span>
-                    <span className="game-format">{game.formats.length > 1 ? 'Digital e físico' : 'Digital'}</span>
+                    <span className="game-format">{game.formats.map((format) => format.label).join(' e ')}</span>
                 </div>
                 <h3>{game.title}</h3>
                 <p className="game-card-description">{game.shortDescription}</p>
@@ -42,7 +43,7 @@ function GameCard({ game }) {
                     </div>
                     <div className="game-card-actions">
                         <Link to={`/jogos/${game.slug}`} className="btn btn-outline">Detalhes</Link>
-                        <button type="button" className="game-add-button" onClick={addDefaultGame} aria-label={`Adicionar ${game.title} ao carrinho`}>
+                        <button type="button" className="game-add-button" disabled={game.stock === 0} title={game.stock === 0 ? "Esgotado" : "Adicionar ao carrinho"} onClick={addDefaultGame} aria-label={`Adicionar ${game.title} ao carrinho`}>
                             +
                         </button>
                     </div>

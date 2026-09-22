@@ -14,7 +14,7 @@ import iconSobre from "../../assets/images/Icons/Nav_Footer/icon-sobre.png";
 function Navbar() {
   const { user } = useUser();
   const { totalItems, openCart } = useCart();
-  const isAdmin = localStorage.getItem("isAdmin") === "true";
+  const isAdmin = user?.nivel_acesso === 'admin';
   const userInitials = user?.nome
     ?.trim()
     .split(" ")

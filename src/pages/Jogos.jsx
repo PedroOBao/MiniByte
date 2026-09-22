@@ -1,9 +1,10 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { formatCurrency, formatOptions, games, genreOptions, getLowestPrice, platformOptions } from '../componentes/data/gamesData';
+import { formatCurrency, formatOptions, getLowestPrice } from '../componentes/data/gamesData';
 import { useCart } from '../componentes/cart/useCart';
 import GameCard from '../componentes/games/GameCard';
 import GameCover from '../componentes/games/GameCover';
+import { useGameState } from '../admin/useGames';
 
 const defaultFilters = {
     search: '',
@@ -14,10 +15,14 @@ const defaultFilters = {
 };
 
 function Jogos() {
+    const { games: allGames, error } = useGameState();
+    const games = useMemo(() => allGames.filter((game) => game.active !== false), [allGames]);
+    const genreOptions = [...new Set(games.flatMap((game) => game.genres))];
+    const platformOptions = [...new Set(games.flatMap((game) => game.platforms))];
     const [filters, setFilters] = useState(defaultFilters);
     const { addItem, openCart } = useCart();
     const featuredGame = games[0];
-    const featuredFormat = featuredGame.formats.find((format) => format.id === 'digital') || featuredGame.formats[0];
+    const featuredFormat = featuredGame?.formats.find((format) => format.id === 'digital') || featuredGame?.formats[0];
 
     const filteredGames = useMemo(() => {
         const search = filters.search.trim().toLocaleLowerCase('pt-BR');
@@ -39,13 +44,14 @@ function Jogos() {
             if (filters.order === 'a-z') return firstGame.title.localeCompare(secondGame.title, 'pt-BR');
             return 0;
         });
-    }, [filters]);
+    }, [filters, games]);
 
     const updateFilter = (field, value) => {
         setFilters((currentFilters) => ({ ...currentFilters, [field]: value }));
     };
 
     const addFeaturedGame = () => {
+        if (!featuredGame || featuredGame.stock === 0) return;
         addItem({
             cartId: `game-${featuredGame.slug}-${featuredFormat.id}`,
             type: 'game',
@@ -59,6 +65,7 @@ function Jogos() {
 
     return (
         <main className="games-page animacao-entrada">
+            {error && <p role="alert">{error}</p>}
             <section className="games-hero">
                 <div className="games-hero-copy">
                     <span className="tag">Catálogo MiniByte</span>
@@ -73,7 +80,7 @@ function Jogos() {
                         <span>PC compatível</span>
                     </div>
                 </div>
-                <div className="games-hero-feature">
+                {featuredGame && <div className="games-hero-feature">
                     <div className="featured-cover-wrap">
                         <GameCover game={featuredGame} size="featured" />
                     </div>
@@ -83,18 +90,18 @@ function Jogos() {
                         <p>{featuredGame.shortDescription}</p>
                         <div className="featured-price-row">
                             <div>
-                                <span className="price-caption">Edição digital</span>
+                                <span className="price-caption">{featuredFormat.label}</span>
                                 {featuredFormat.oldPrice && <del>{formatCurrency(featuredFormat.oldPrice)}</del>}
                                 <strong>{formatCurrency(featuredFormat.price)}</strong>
                             </div>
                             <span className="discount-chip">{featuredFormat.oldPrice ? 'Oferta especial' : 'Em destaque'}</span>
                         </div>
                         <div className="featured-actions">
-                            <button type="button" className="btn" onClick={addFeaturedGame}>Adicionar ao carrinho</button>
+                            <button type="button" className="btn" disabled={featuredGame.stock === 0} onClick={addFeaturedGame}>{featuredGame.stock === 0 ? 'Esgotado' : 'Adicionar ao carrinho'}</button>
                             <Link to={`/jogos/${featuredGame.slug}`} className="btn btn-outline">Ver requisitos</Link>
                         </div>
                     </div>
-                </div>
+                </div>}
             </section>
 
             <section className="games-catalog" aria-labelledby="catalog-title">

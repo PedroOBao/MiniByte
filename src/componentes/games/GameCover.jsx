@@ -1,4 +1,7 @@
 function GameCover({ game, size = 'card' }) {
+    if (game.image) return <div className={'game-cover game-cover--' + size}>
+        <img src={game.image} alt={'Capa de ' + game.title} style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', inset: 0 }} />
+    </div>;
     const style = {
         '--cover-primary': game.cover.primary,
         '--cover-secondary': game.cover.secondary,

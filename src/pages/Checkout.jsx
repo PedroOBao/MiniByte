@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useCart } from "../componentes/cart/useCart";
 import { formatCurrency } from "../componentes/data/gamesData";
 
@@ -25,8 +25,7 @@ const paymentOptions = [
 ];
 
 function Checkout() {
-  const navigate = useNavigate();
-  const { items, totalPrice, clearCart } = useCart();
+  const { items, clearCart } = useCart();
   const [selectedPayment, setSelectedPayment] = useState("pix");
   const [coupon, setCoupon] = useState("");
   const [couponStatus, setCouponStatus] = useState("");

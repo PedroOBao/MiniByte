@@ -17,12 +17,8 @@ function Login() {
         e.preventDefault();
         setErro('');
         try {
-            const usuario = await login(email, senha);
-            if (usuario && usuario.nivel_acesso === 'admin') {
-                navigate('/admin');
-            } else {
-                navigate('/');
-            }
+            await login(email, senha);
+            navigate('/perfil', { replace: true });
         } catch (error) {
             setErro(error.message);
         }
@@ -90,4 +86,4 @@ function Login() {
     );
 }
 
-export default Login; 
+export default Login;

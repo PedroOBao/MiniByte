@@ -42,7 +42,7 @@ function Register() {
 
         try {
             // Chama o register do contexto (salva no localStorage)
-            register(form.nome, form.email, form.senha);
+            register(form.nome, form.email, form.senha, form.cpf);
             alert('Cadastro realizado com sucesso! Faça login.');
             navigate('/login');
         } catch (error) {
@@ -72,7 +72,7 @@ function Register() {
                         <label>Senha</label>
                         <div className="input-password-wrapper">
                             <input
-                                name="senha"
+                                name="senha" minLength={6}
                                 type={mostrarSenha ? 'text' : 'password'}
                                 value={form.senha}
                                 onChange={handleChange}

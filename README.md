@@ -148,3 +148,57 @@ MiniByte — tecnologia, games e produtos digitais em um só lugar.
 
 - Início do Perfil (Guilherme Vitor)
 
+
+## Login, perfil e administração local
+
+O MiniByte usa somente o navegador, sem API ou banco de dados. Após o login,
+clientes e administradores vão para /perfil. O administrador vê a aba
+Administração, com Produtos e Administradores; /admin redireciona para esse
+perfil e exige uma conta administrativa.
+
+Acesso inicial de demonstração: admin@email.com / admin123. A conta é criada
+no primeiro login e pode alterar nome, e-mail e senha em Meus dados e Segurança.
+Após alterar a senha ou o e-mail, use os dados novos: o acesso inicial deixa
+de funcionar. Se havia uma sessão antiga do administrador fixo, entre novamente.
+
+- registeredUsers: contas, credenciais locais, endereço, método de pagamento
+  preferido e configurações. O CPF informado no cadastro também é preservado.
+- currentUser: referência ao ID da conta autenticada. Edições do perfil são
+  sincronizadas com a navbar; sessões antigas de clientes são aceitas.
+- minibyte-products: catálogo de hardware, incluindo fotos, preço, estoque e
+  estado publicado/inativo. Os seis produtos originais são a base inicial.
+- isAdmin: deixou de autorizar acesso. O nível vem da conta da sessão.
+- minibyte-cart: continua sendo um carrinho do navegador, compartilhado entre
+  as contas que usam esse navegador.
+
+Administradores podem criar outros administradores, cadastrar e editar produtos,
+enviar foto JPG/PNG/WebP (até 8 MB, reduzida antes de salvar), desativar e reativar
+produtos. A publicação aparece em /produtos. Na edição, o preço se refere à
+primeira variante e as demais variantes são preservadas. Estoque zero impede
+novas adições pela página de produtos; não há reserva ou baixa real de estoque.
+
+A adaptação segue a organização do perfil do Lumina Decora, mas substitui as
+chamadas de API/MySQL por operações locais. O catálogo de jogos também pode ser gerenciado na área Produtos, selecionando Jogo. Pedidos e checkout continuam demonstrativos: não há pedido
+persistido, pagamento processado ou e-mail enviado. Endereço e pagamento favorito
+do perfil ainda não preenchem o checkout automaticamente.
+
+Este é um protótipo: as senhas continuam armazenadas em texto no navegador, como
+na implementação original. Não use senhas reais. Alterar o armazenamento pelas
+ferramentas do navegador permite alterar dados e permissões; a restrição de ADM
+organiza a interface e não equivale à autorização de um servidor. Os dados não
+sincronizam entre dispositivos e são perdidos se o armazenamento do site for limpo.
+
+Validação: npm test, npm run lint e npm run build.
+### Cadastro de jogos
+
+Em Perfil > Administração > Produtos, escolha **Jogo** em "O que deseja cadastrar?".
+Preencha título, resumo, descrição, gêneros e plataformas (separados por vírgula),
+estoque e pelo menos um formato. Digital e mídia física têm preço e plataforma/loja
+próprios. A capa e os requisitos de PC são opcionais. Para requisitos, use uma linha
+por componente, por exemplo "Memória: 16 GB RAM".
+
+Os jogos ficam em minibyte-games no localStorage, com os jogos originais como base.
+É possível editar, desativar e reativar tanto os originais quanto os novos.
+A publicação aparece em /jogos, nos filtros, nos detalhes e nos jogos relacionados.
+Editar mantém a URL do jogo. Desativar o remove dessas áreas; estoque zero bloqueia
+novas adições ao carrinho. Continua sendo estoque demonstrativo, sem reserva real.

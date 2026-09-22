@@ -1,0 +1,18 @@
+.mini-admin-tabs { display: flex; flex-wrap: wrap; gap: 12px; }
+.mini-admin-tabs .perfil-action { border: 1px solid var(--border-color); background: var(--bg-main); color: var(--text-main); }
+.mini-admin-tabs [aria-pressed="true"], .mini-admin-tabs .perfil-action--primary { background: var(--brand-ambar); color: var(--bg-main); }
+.mini-admin .perfil-form { max-width: none; }
+.mini-admin textarea { min-height: 100px; padding: 12px; border: 1px solid var(--border-color); border-radius: 9px; background: var(--bg-main); color: var(--text-main); font: inherit; resize: vertical; }
+.mini-admin-preview { width: 100%; max-height: 220px; object-fit: contain; }
+.mini-admin-row { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--border-color); }
+.mini-admin-row > div { flex: 1; min-width: 160px; overflow-wrap: anywhere; }
+.mini-admin-row img { width: 64px; height: 64px; object-fit: contain; }
+.mini-admin-row p { margin: 6px 0 0; }
+.mini-admin-error { color: #ffaaaa; }
+.mini-admin button:disabled { opacity: .5; cursor: wait; }
+.mini-admin-catalog-label { display: grid; gap: 8px; color: var(--text-main); font-weight: 700; }
+.mini-admin select { padding: 12px; border: 1px solid var(--border-color); border-radius: 9px; background: var(--bg-main); color: var(--text-main); font: inherit; }
+.mini-admin-format { display: grid; gap: 16px; padding: 18px; border: 1px solid var(--border-color); border-radius: 12px; min-width: 0; }
+.mini-admin-format legend { padding: 0 8px; color: var(--brand-ambar); }
+.mini-admin .mini-admin-check { display: flex; align-items: center; gap: 10px; }
+.mini-admin .mini-admin-check input { width: auto; }

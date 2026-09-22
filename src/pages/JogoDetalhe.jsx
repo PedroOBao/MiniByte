@@ -1,11 +1,14 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { formatCurrency, games } from '../componentes/data/gamesData';
+import { formatCurrency } from '../componentes/data/gamesData';
 import { useCart } from '../componentes/cart/useCart';
 import GameCard from '../componentes/games/GameCard';
 import GameCover from '../componentes/games/GameCover';
+import { useGameState } from '../admin/useGames';
 
 function JogoDetalhe() {
+    const { games: allGames, error } = useGameState();
+    const games = useMemo(() => allGames.filter((game) => game.active !== false), [allGames]);
     const { slug } = useParams();
     const game = games.find((currentGame) => currentGame.slug === slug);
     const [selectedFormatId, setSelectedFormatId] = useState('');
@@ -15,7 +18,7 @@ function JogoDetalhe() {
         return (
             <main className="game-not-found animacao-entrada">
                 <span className="tag">Catálogo MiniByte</span>
-                <h1>Jogo não encontrado</h1>
+                <h1>Jogo não encontrado</h1>{error && <p role="alert">{error}</p>}
                 <p>Esse item pode ter saído do catálogo ou o endereço pode estar incorreto.</p>
                 <Link to="/jogos" className="btn">Voltar ao catálogo</Link>
             </main>
@@ -28,6 +31,7 @@ function JogoDetalhe() {
         .slice(0, 3);
 
     const addGameToCart = () => {
+        if (game.stock === 0) return;
         addItem({
             cartId: `game-${game.slug}-${selectedFormat.id}`,
             type: 'game',
@@ -62,7 +66,7 @@ function JogoDetalhe() {
                 <div className="game-detail-copy">
                     <div className="detail-badges">
                         <span>{game.release}</span>
-                        <span>{game.formats.some((format) => format.id === 'fisica') ? 'Digital e mídia física' : 'Digital'}</span>
+                        <span>{game.formats.map((format) => format.label).join(' e ')}</span>
                     </div>
                     <h1>{game.title}</h1>
                     <p className="game-detail-lead">{game.description}</p>
@@ -99,14 +103,14 @@ function JogoDetalhe() {
                                 </button>
                             ))}
                         </div>
-                        <button type="button" className="btn detail-buy-button" onClick={addGameToCart}>
-                            Adicionar {selectedFormat.label.toLocaleLowerCase('pt-BR')} ao carrinho
+                        <button type="button" className="btn detail-buy-button" disabled={game.stock === 0} onClick={addGameToCart}>
+                            {game.stock === 0 ? 'Esgotado' : 'Adicionar ' + selectedFormat.label.toLocaleLowerCase('pt-BR') + ' ao carrinho'}
                         </button>
                     </div>
                 </div>
             </section>
 
-            <section className="detail-section requirements-section" aria-labelledby="requirements-title">
+            {(game.requirements.minimum.length > 0 || game.requirements.recommended.length > 0) && <section className="detail-section requirements-section" aria-labelledby="requirements-title">
                 <div className="section-heading-detail">
                     <span className="tag">Compatibilidade de PC</span>
                     <h2 id="requirements-title">Seu computador está pronto?</h2>
@@ -122,6 +126,7 @@ function JogoDetalhe() {
                             </div>
                         </div>
                         <dl>
+                            {!game.requirements.minimum.length && <div><dt>Requisitos</dt><dd>Não informados.</dd></div>}
                             {game.requirements.minimum.map(([label, value]) => (
                                 <div key={label}>
                                     <dt>{label}</dt>
@@ -139,6 +144,7 @@ function JogoDetalhe() {
                             </div>
                         </div>
                         <dl>
+                            {!game.requirements.recommended.length && <div><dt>Requisitos</dt><dd>Não informados.</dd></div>}
                             {game.requirements.recommended.map(([label, value]) => (
                                 <div key={label}>
                                     <dt>{label}</dt>
@@ -151,9 +157,9 @@ function JogoDetalhe() {
                 <p className="requirements-disclaimer">
                     Requisitos demonstrativos para este protótipo. Em uma loja real, eles seriam conferidos diretamente com a publicadora do jogo.
                 </p>
-            </section>
+            </section>}
 
-            <section className="detail-section hardware-section" aria-labelledby="hardware-title">
+            {game.recommendedHardware.length > 0 && <section className="detail-section hardware-section" aria-labelledby="hardware-title">
                 <div className="section-heading-detail hardware-heading">
                     <div>
                         <span className="tag">Upgrade inteligente</span>
@@ -179,7 +185,7 @@ function JogoDetalhe() {
                         </article>
                     ))}
                 </div>
-            </section>
+            </section>}
 
             {relatedGames.length > 0 && (
                 <section className="detail-section related-section" aria-labelledby="related-title">
