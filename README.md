@@ -168,8 +168,8 @@ de funcionar. Se havia uma sessão antiga do administrador fixo, entre novamente
 - minibyte-products: catálogo de hardware, incluindo fotos, preço, estoque e
   estado publicado/inativo. Os seis produtos originais são a base inicial.
 - isAdmin: deixou de autorizar acesso. O nível vem da conta da sessão.
-- minibyte-cart: continua sendo um carrinho do navegador, compartilhado entre
-  as contas que usam esse navegador.
+- minibyte-cart-user-ID: carrinho individual de cada conta, vinculado ao ID.
+- minibyte-cart: carrinho do visitante; preserva os itens do antigo carrinho compartilhado.
 
 Administradores podem criar outros administradores, cadastrar e editar produtos,
 enviar foto JPG/PNG/WebP (até 8 MB, reduzida antes de salvar), desativar e reativar
@@ -179,8 +179,8 @@ novas adições pela página de produtos; não há reserva ou baixa real de esto
 
 A adaptação segue a organização do perfil do Lumina Decora, mas substitui as
 chamadas de API/MySQL por operações locais. O catálogo de jogos também pode ser gerenciado na área Produtos, selecionando Jogo. Pedidos e checkout continuam demonstrativos: não há pedido
-persistido, pagamento processado ou e-mail enviado. Endereço e pagamento favorito
-do perfil ainda não preenchem o checkout automaticamente.
+persistido, pagamento processado ou e-mail enviado. Nome, e-mail, CPF, endereço e pagamento favorito do perfil preenchem o checkout automaticamente.
+Campos ainda não editados no checkout acompanham as alterações salvas na conta.
 
 Este é um protótipo: as senhas continuam armazenadas em texto no navegador, como
 na implementação original. Não use senhas reais. Alterar o armazenamento pelas
@@ -202,3 +202,18 @@ Os jogos ficam em minibyte-games no localStorage, com os jogos originais como ba
 A publicação aparece em /jogos, nos filtros, nos detalhes e nos jogos relacionados.
 Editar mantém a URL do jogo. Desativar o remove dessas áreas; estoque zero bloqueia
 novas adições ao carrinho. Continua sendo estoque demonstrativo, sem reserva real.
+### Edição e isolamento de clientes
+
+Nome, e-mail, senha, endereço, preferências e carrinho pertencem ao ID da conta.
+Trocar o e-mail não muda esse ID. A edição salva atualiza a navbar e os dados
+consumidos no checkout. O perfil e a navbar também acompanham alterações salvas
+em outra aba. Rascunhos de nome/e-mail não são exibidos como dados já salvos.
+
+A sessão continua compartilhada entre abas do mesmo navegador: entrar com outro
+cliente ou sair atualiza todas elas. Os dados de cada cliente permanecem separados.
+O carrinho de visitante não é transferido automaticamente para a conta no login.
+
+Verificação no Chrome: após npm run build, execute node tests/customer-browser.mjs
+a partir de MiniByte. O teste usa contas fictícias e perfil de navegador temporário,
+sem abrir o perfil pessoal do Chrome. No Windows, o caminho padrão é
+C:/Program Files/Google/Chrome/Application/chrome.exe; ajuste CHROME_BIN se necessário.

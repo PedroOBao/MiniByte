@@ -31,15 +31,20 @@ function ProfileContent() {
 	const { items, totalItems, totalPrice, decrementItem, removeItem } = useCart();
 	const navigate = useNavigate();
 	const [activeTab, setActiveTab] = useState(user.nivel_acesso === 'admin' ? 'admin' : 'visao-geral');
-	const [profile, setProfile] = useState(() => ({ nome: user.nome, email: user.email }));
-	const [address, setAddress] = useState(user.address || initialAddress);
+	const savedIdentity = JSON.stringify({ nome: user.nome, email: user.email });
+    const [profileDraft, setProfileDraft] = useState(null);
+    const profile = profileDraft?.source === savedIdentity ? profileDraft.values : JSON.parse(savedIdentity);
+	const savedAddressSource = JSON.stringify(user.address || initialAddress);
+    const [addressDraft, setAddressDraft] = useState(null);
+    const address = addressDraft?.source === savedAddressSource ? addressDraft.values : JSON.parse(savedAddressSource);
+    const setAddress = (values) => setAddressDraft({ source: savedAddressSource, values });
 	const savedAddress = user.address || null;
 	const savedPayment = user.payment || null;
 	const [status, setStatus] = useState('');
 	const [securityForm, setSecurityForm] = useState({ current: '', next: '', confirmation: '' });
 
-	const initials = useMemo(() => profile.nome.trim().split(' ').slice(0, 2).map((part) => part[0]).join('').toUpperCase() || 'M', [profile.nome]);
-	const firstName = profile.nome.trim().split(' ')[0] || 'cliente';
+	const initials = useMemo(() => user.nome.trim().split(' ').slice(0, 2).map((part) => part[0]).join('').toUpperCase() || 'M', [user.nome]);
+	const firstName = user.nome.trim().split(' ')[0] || 'cliente';
 
 	if (!user) return <Navigate to="/login" replace />;
 
@@ -50,7 +55,7 @@ function ProfileContent() {
 
 	const handleProfileChange = (event) => {
 		const { name, value } = event.target;
-		setProfile((current) => ({ ...current, [name]: value }));
+		setProfileDraft({ source: savedIdentity, values: { ...profile, [name]: value } });
 	};
 
 	const persist = (changes, message) => {
@@ -71,8 +76,8 @@ function ProfileContent() {
     const saveProfile = (event) => {
         event.preventDefault();
         try {
-            const updated = updateProfile(profile);
-            setProfile({ nome: updated.nome, email: updated.email });
+            updateProfile(profile);
+            setProfileDraft(null);
             showStatus('Seus dados foram atualizados.');
         } catch (error) {
             showStatus(error.message);
@@ -129,7 +134,7 @@ function ProfileContent() {
 				</section>
 				<section className="perfil-panel">
 					<div className="perfil-panel-title"><span>Conta</span><span className="perfil-security-label">Local</span></div>
-					<div className="perfil-account-line"><span className="perfil-avatar perfil-avatar--small">{initials}</span><div><strong>{profile.nome}</strong><span>{profile.email}</span></div><button type="button" aria-label="Editar dados" onClick={() => setActiveTab('dados')}>✎</button></div>
+					<div className="perfil-account-line"><span className="perfil-avatar perfil-avatar--small">{initials}</span><div><strong>{user.nome}</strong><span>{user.email}</span></div><button type="button" aria-label="Editar dados" onClick={() => setActiveTab('dados')}>✎</button></div>
 					<div className="perfil-progress"><span style={{ width: savedAddress ? '85%' : '65%' }} /></div><p className="perfil-completion">Perfil {savedAddress ? '85%' : '65%'} completo</p>
 				</section>
 			</div>

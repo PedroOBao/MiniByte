@@ -1,6 +1,8 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "../componentes/cart/useCart";
+import { useUser } from "../componentes/users/UserContext";
+import { checkoutProfile, checkoutPayment } from "../componentes/users/checkoutProfile";
 import { formatCurrency } from "../componentes/data/gamesData";
 
 const paymentOptions = [
@@ -24,20 +26,16 @@ const paymentOptions = [
   },
 ];
 
-function Checkout() {
+function CheckoutContent() {
+  const { user } = useUser();
   const { items, clearCart } = useCart();
-  const [selectedPayment, setSelectedPayment] = useState("pix");
+  const [paymentDraft, setSelectedPayment] = useState(null);
+  const selectedPayment = paymentDraft ?? checkoutPayment(user);
   const [coupon, setCoupon] = useState("");
   const [couponStatus, setCouponStatus] = useState("");
   const [orderPlaced, setOrderPlaced] = useState(false);
-  const [form, setForm] = useState({
-    nome: "Cliente MiniByte",
-    email: "cliente@minibyte.com",
-    cpf: "123.456.789-09",
-    endereco: "Rua da Geração, 200",
-    cidade: "São Paulo",
-    cep: "01000-000",
-  });
+  const [formDraft, setFormDraft] = useState({});
+  const form = { ...checkoutProfile(user), ...formDraft };
 
   const subtotal = items.reduce(
     (sum, item) => sum + item.price * item.quantity,
@@ -54,7 +52,7 @@ function Checkout() {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setForm((current) => ({ ...current, [name]: value }));
+    setFormDraft((current) => ({ ...current, [name]: value }));
   };
 
   const applyCoupon = () => {
@@ -666,4 +664,7 @@ function Checkout() {
   );
 }
 
-export default Checkout;
+export default function Checkout() {
+    const { user } = useUser();
+    return <CheckoutContent key={user?.id || 'guest'} />;
+}
