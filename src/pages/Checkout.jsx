@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useCart } from "../componentes/cart/useCart";
 import { useUser } from "../componentes/users/UserContext";
 import { checkoutProfile, checkoutPayment } from "../componentes/users/checkoutProfile";
+import { aplicarMascaraCEP, aplicarMascaraCPF } from "../componentes/users/Mascaras";
 import { formatCurrency } from "../componentes/data/gamesData";
 
 const paymentOptions = [
@@ -36,6 +37,8 @@ function CheckoutContent() {
   const [orderPlaced, setOrderPlaced] = useState(false);
   const [formDraft, setFormDraft] = useState({});
   const form = { ...checkoutProfile(user), ...formDraft };
+  form.cpf = aplicarMascaraCPF(form.cpf);
+  form.cep = aplicarMascaraCEP(form.cep);
 
   const subtotal = items.reduce(
     (sum, item) => sum + item.price * item.quantity,
@@ -52,7 +55,13 @@ function CheckoutContent() {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setFormDraft((current) => ({ ...current, [name]: value }));
+    const formattedValue =
+      name === "cpf"
+        ? aplicarMascaraCPF(value)
+        : name === "cep"
+          ? aplicarMascaraCEP(value)
+          : value;
+    setFormDraft((current) => ({ ...current, [name]: formattedValue }));
   };
 
   const applyCoupon = () => {
@@ -494,6 +503,9 @@ function CheckoutContent() {
                   <input
                     id="cpf"
                     name="cpf"
+                    inputMode="numeric"
+                    maxLength={14}
+                    placeholder="000.000.000-00"
                     value={form.cpf}
                     onChange={handleChange}
                   />
@@ -513,6 +525,9 @@ function CheckoutContent() {
                   <input
                     id="cep"
                     name="cep"
+                    inputMode="numeric"
+                    maxLength={9}
+                    placeholder="00000-000"
                     value={form.cep}
                     onChange={handleChange}
                   />
