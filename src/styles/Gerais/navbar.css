@@ -22,7 +22,8 @@
 
     align-items: center;
 
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 12px;
 
     padding: 0 30px;
 
@@ -45,6 +46,8 @@
     display: flex;
 
     align-items: center;
+
+    flex-shrink: 0;
 
     text-decoration: none;
 
@@ -72,9 +75,15 @@
 
 .navbar-nav {
 
+    position: absolute;
+
+    left: 50%;
+
     display: flex;
 
     align-items: center;
+
+    transform: translateX(-50%);
 
 }
 
@@ -91,6 +100,8 @@
     padding: 0;
 
     gap: 12px;
+
+    white-space: nowrap;
 
 }
 
@@ -159,6 +170,8 @@
     align-items: center;
 
     gap: 15px;
+
+    flex-shrink: 0;
 
 }
 
@@ -283,6 +296,10 @@
 .navbar-cart {
 
     position: relative;
+
+    flex-shrink: 0;
+
+    margin-left: auto;
 
     display: inline-flex;
 
@@ -464,7 +481,7 @@
 
         padding: 0 8px;
 
-        gap: 4px;
+        gap: 0;
 
     }
 
@@ -548,9 +565,9 @@
 
     .navbar-user {
 
-        flex-direction: column;
+        flex-direction: row;
 
-        gap: 5px;
+        gap: 0;
 
         align-items: center;
 
@@ -598,13 +615,13 @@
 
     .navbar-logo img {
 
-        height: 39px;
+        height: 35px;
 
     }
 
     .navbar-links a {
 
-        padding: 6px 5px;
+        padding: 6px 3px;
 
     }
 
@@ -635,6 +652,44 @@
     .user-nome {
 
         display: none;
+
+    }
+
+}
+
+@media (max-width: 360px) {
+
+    .navbar-logo img {
+
+        height: 30px;
+
+    }
+
+    .navbar-links {
+
+        gap: 0;
+
+    }
+
+    .navbar-links a {
+
+        padding: 5px 2px;
+
+    }
+
+    .navbar-icon {
+
+        width: 19px;
+
+        height: 19px;
+
+    }
+
+    .btn-sair {
+
+        padding: 5px 6px;
+
+        font-size: 13px;
 
     }
 

@@ -202,7 +202,6 @@ export default function HardwarePage() {
       {/* Estilos CSS embutidos para garantir o visual idêntico à imagem */}
       <style>{`
         .games-page {
-          background-color: #121212;
           color: #ffffff;
           font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
           max-width: 1200px;
