@@ -20,7 +20,6 @@ import Jogos from "./pages/Jogos";
 import Login from "./pages/Login";
 import Produtos from "./pages/produtos";
 import Register from "./pages/Register";
-import Sobre from "./pages/Sobre";
 import Perfil from "./pages/Perfil";
 
 function App() {
@@ -32,16 +31,10 @@ function App() {
         <div className="main-wrapper">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/sobre" element={<Sobre />} />
             <Route path="/jogos" element={<Jogos />} />
             <Route path="/produtos" element={<Produtos />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/jogos/:slug" element={<JogoDetalhe />} />
-            <Route path="/blog" element={<Navigate to="/jogos" replace />} />
-            <Route
-              path="/blog/:id"
-              element={<Navigate to="/jogos" replace />}
-            />
             <Route path="/contato" element={<Contato />} />
             <Route path="/login" element={<Login />} />
             <Route path="/perfil" element={<Perfil />} />

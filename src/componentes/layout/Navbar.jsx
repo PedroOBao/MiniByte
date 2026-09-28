@@ -9,7 +9,6 @@ import iconProdutos from "../../assets/images/Icons/Home/hardware.png";
 import iconAdmin from "../../assets/images/Icons/Nav_Footer/icon-admin.png";
 import iconContato from "../../assets/images/Icons/Nav_Footer/icon-contato.png";
 import iconHome from "../../assets/images/Icons/Nav_Footer/icon-home.png";
-import iconSobre from "../../assets/images/Icons/Nav_Footer/icon-sobre.png";
 
 function Navbar() {
   const { user } = useUser();
@@ -40,17 +39,6 @@ function Navbar() {
             >
               <img src={iconHome} alt="" className="navbar-icon" />
               <span>Home</span>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
-              to="/sobre"
-              className={({ isActive }) =>
-                isActive ? "nav-link active" : "nav-link"
-              }
-            >
-              <img src={iconSobre} alt="" className="navbar-icon" />
-              <span>Sobre</span>
             </NavLink>
           </li>
           <li>

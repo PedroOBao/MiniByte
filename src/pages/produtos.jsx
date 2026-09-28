@@ -1,6 +1,12 @@
 import { useMemo, useState } from "react";
 import { useProductState } from "../admin/useProducts";
 import { useCart } from "../componentes/cart/useCart";
+import image4070 from "../assets/images/Produtos/4070.png";
+import imageRam from "../assets/images/Produtos/RAM.png";
+import imageProcessor from "../assets/images/Produtos/Processador.png";
+import imageMotherboard from "../assets/images/Produtos/Placa-mae.png";
+import imageSsd from "../assets/images/Produtos/SSD.png";
+import imagePowerSupply from "../assets/images/Produtos/Fonte.png";
 
 // ==========================================
 // 1. OPÇÕES DO CATÁLOGO LOCAL
@@ -21,32 +27,25 @@ const getLowestPrice = (product) => {
   return Math.min(...product.types.map((t) => t.price));
 };
 
+const defaultHardwareImages = {
+  "rtx-4070": image4070,
+  "ryzen-7": imageProcessor,
+  "memoria-ram-32gb": imageRam,
+  "ssd-nvme-1tb": imageSsd,
+  "placa-mae-b650": imageMotherboard,
+  "fonte-850w": imagePowerSupply,
+};
+
 // ==========================================
 // 2. COMPONENTES INTERNOS
 // ==========================================
 const HardwareCover = ({ hardware, size }) => {
-  // Simula a capa do produto com um gradiente e o nome
   const isFeatured = size === "featured";
-  if (hardware.image) return <img src={hardware.image} alt={hardware.name} style={{ width: '100%', height: isFeatured ? 220 : 160, objectFit: 'contain', borderRadius: 12 }} />;
+  const image = hardware.image || defaultHardwareImages[hardware.slug];
+
   return (
-    <div
-      style={{
-        width: "100%",
-        height: isFeatured ? "220px" : "160px",
-        background: "linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%)",
-        borderRadius: "12px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        border: "1px solid #333",
-        color: "#ff6b00",
-        fontWeight: "bold",
-        fontSize: isFeatured ? "1.2rem" : "1rem",
-        textAlign: "center",
-        padding: "1rem",
-      }}
-    >
-      {hardware.name}
+    <div className={`hardware-cover${isFeatured ? " hardware-cover--featured" : ""}`}>
+      {image ? <img src={image} alt={hardware.name} /> : hardware.name}
     </div>
   );
 };
@@ -363,65 +362,142 @@ export default function HardwarePage() {
           color: #aaa;
           font-size: 0.9rem;
         }
-        .game-filters {
-          display: flex;
-          gap: 1rem;
-          flex-wrap: wrap;
+        .hardware-page .game-filters {
+          display: grid;
+          grid-template-columns: minmax(245px, 2fr) repeat(4, minmax(130px, 1fr)) auto;
+          gap: 10px;
+          align-items: end;
           margin-bottom: 2rem;
           background: #1e1e1e;
-          padding: 1.5rem;
-          border-radius: 12px;
+          padding: 14px;
+          border-radius: 15px;
           border: 1px solid #333;
         }
-        .game-search {
-          flex: 1;
-          min-width: 250px;
-          display: flex;
-          align-items: center;
-          background: #121212;
-          border: 1px solid #333;
-          border-radius: 8px;
-          padding: 0 1rem;
-        }
-        .game-search input {
-          background: transparent;
-          border: none;
-          color: #fff;
-          padding: 0.8rem;
-          width: 100%;
-          outline: none;
-        }
-        .game-filters label {
+        .hardware-page .game-filters label:not(.game-search) {
           display: flex;
           flex-direction: column;
-          gap: 0.3rem;
+          gap: 5px;
+          min-width: 0;
         }
-        .game-filters label span {
-          font-size: 0.8rem;
+        .hardware-page .game-filters label > span:not(.sr-only) {
+          padding-left: 3px;
           color: #aaa;
+          font-size: 0.64rem;
+          font-weight: 800;
+          text-transform: uppercase;
         }
-        .game-filters select {
+        .hardware-page .game-search {
+          display: flex;
+          align-items: center;
+          gap: 9px;
+          height: 39px;
+          padding: 0 11px;
           background: #121212;
-          color: #fff;
           border: 1px solid #333;
-          padding: 0.8rem;
-          border-radius: 8px;
+          border-radius: 9px;
+          color: #ff6b00;
+        }
+        .hardware-page .game-search input,
+        .hardware-page .game-filters select {
+          width: 100%;
+          min-width: 0;
+          height: 39px;
+          background: #121212;
+          border: 1px solid #333;
+          border-radius: 9px;
+          color: #fff;
+          font: inherit;
+          font-size: 0.77rem;
           outline: none;
+        }
+        .hardware-page .game-search input {
+          height: auto;
+          background: transparent;
+          border: none;
+          color: inherit;
+          padding: 0;
+          width: 100%;
+        }
+        .hardware-page .game-filters select {
+          padding: 0 8px;
           cursor: pointer;
         }
-        .filter-reset {
-          background: transparent;
+        .hardware-page .game-search:focus-within,
+        .hardware-page .game-filters select:focus {
+          border-color: #ff6b00;
+          box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.15);
+        }
+        .hardware-page .filter-reset {
+          height: 39px;
+          padding: 0 11px;
+          background: #121212;
           color: #ff6b00;
           border: none;
           cursor: pointer;
+          font: inherit;
+          font-size: 0.72rem;
           font-weight: bold;
-          align-self: flex-end;
-          padding: 0.8rem;
+          white-space: nowrap;
+        }
+        @media (max-width: 1120px) {
+          .hardware-page .game-filters {
+            grid-template-columns: minmax(260px, 2fr) repeat(3, minmax(130px, 1fr));
+          }
+          .hardware-page .filter-reset {
+            justify-self: end;
+          }
+        }
+        @media (max-width: 700px) {
+          .hardware-page .game-filters {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 11px;
+            padding: 12px;
+          }
+          .hardware-page .game-search {
+            grid-column: 1 / -1;
+          }
+          .hardware-page .filter-reset {
+            justify-self: start;
+            padding-left: 3px;
+          }
+        }
+        @media (max-width: 500px) {
+          .hardware-page .game-filters {
+            grid-template-columns: 1fr;
+          }
+          .hardware-page .game-search {
+            grid-column: auto;
+          }
         }
         .games-grid {
           display: grid;
           grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
           gap: 1.5rem;
+        }
+        .hardware-cover {
+          width: 100%;
+          height: 160px;
+          box-sizing: border-box;
+          padding: 12px;
+          background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+          border: 1px solid #333;
+          border-radius: 12px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #ff6b00;
+          font-weight: bold;
+          text-align: center;
+        }
+        .hardware-cover img {
+          display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+        .hardware-cover--featured {
+          height: 220px;
+          font-size: 1.2rem;
         }
         .game-card {
           background: #1e1e1e;
@@ -533,7 +609,7 @@ export default function HardwarePage() {
       {cartMessage && <div className="cart-toast">{cartMessage}</div>}
       {catalogError && <p role="alert">{catalogError}</p>}
 
-      <main className="games-page animacao-entrada">
+      <main className="games-page hardware-page animacao-entrada">
         {/* HERO SECTION */}
         <section className="games-hero">
           <div className="games-hero-copy">
