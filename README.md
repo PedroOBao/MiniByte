@@ -148,6 +148,13 @@ MiniByte — tecnologia, games e produtos digitais em um só lugar.
 
 - Início do Perfil (Guilherme Vitor)
 
+28/09/2026
+
+- Finalização do perfil (Guilherme Vitor);
+- Criação do pipeline (Pedro);
+- Refino de algumas páginas e Navbar (Isaque);
+- Criação de máscaras para CPF e CEP (Isaque);
+
 
 ## Login, perfil e administração local
 
